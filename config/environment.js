@@ -1,7 +1,9 @@
 /* jshint node: true */
+const posts = require('../posts');
 
 module.exports = function(environment) {
   var ENV = {
+    posts,
     modulePrefix: 'todomvc-blog',
     environment: environment,
     baseURL: '/',
