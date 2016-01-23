@@ -1,0 +1,29 @@
+.footer-nav {
+  background: $brand-gray;
+  color: $brand-white;
+  font-family: "Open Sans", sans-serif;
+
+  a {
+    margin-left: 0.2em;
+    margin-right: 0.2em;
+
+    color: $brand-orange;
+    text-decoration: none;
+  }
+}
+
+.footer-nav__list {
+  padding: 0;
+
+  display: flex;
+  justify-content: space-between;
+
+  li {
+    list-style: none;
+    display: flex;
+  }
+}
+
+.footer-nav__copyright {
+  flex: 1;
+}

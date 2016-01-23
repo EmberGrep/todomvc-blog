@@ -1,14 +1,21 @@
 <div class="app">
   <nav class="top-nav">
     <ul class="yg-container top-nav__list">
-      <li class="top-nav__brand">{{link-to '>eg' 'index'}}</li>
+      <li class="top-nav__brand">{{link-to ">eg" "index"}}</li>
 
-      <li>{{link-to 'home' 'index' class="top-nav__link"}}</li>
+      <li>{{link-to "home" "index" class="top-nav__link"}}</li>
       <li>
         <a href="https://embergrep.com" class="top-nav__link">screencasts</a>
       </li>
     </ul>
   </nav>
 
-  {{outlet}}
+  <div class="app-content">{{outlet}}</div>
+
+  <footer class="footer-nav">
+  	<ul class="yg-container footer-nav__list">
+  		<li class="footer-nav__copyright">© {{current-year}} Ember Grep</li>
+  		<li class="footer-nav__attribution">a <a href="http://ryantablada.com">Ryan Tablada</a> project</li>
+  	</ul>
+</footer>
 </div>
