@@ -1,0 +1,84 @@
+@import "yoga";
+
+$brand-orange: #e1563f;
+$brand-gray: #3c3635;
+$brand-white: #efefef;
+$brand-black: #444;
+
+$brand-text-shadow: 0 1px 2px #331915, 0 1px 0 #331915;
+$basic-border: 1px solid lighten($brand-gray, 20%);
+
+// Uncomment this for working with yoga prototyping
+// http://rtablada.github.io/yoga-sass/#mixin-yoga-prototype
+@include yoga-prototype();
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  color: $brand-black;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.top-nav {
+  background: $brand-orange;
+  overflow: auto;
+  color: $brand-white;
+
+  font-family: Play, sans-serif;
+  border-bottom: $basic-border;
+}
+
+.top-nav__list {
+  height: 70px;
+
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0;
+
+  display: flex;
+
+  li {
+    list-style: none;
+    display: flex;
+
+    align-items: center;
+  }
+}
+
+.top-nav__brand {
+  flex-grow: 1;
+
+  font-weight: 700;
+  font-size: 3rem;
+  margin: 0;
+
+  a {
+    position: relative;
+    bottom: 0.5rem;
+
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+.top-nav__link {
+  color: inherit;
+
+  padding: 0 16px;
+
+  font-size: 1.625rem;
+  font-weight: 300;
+  text-decoration: none;
+
+  text-shadow: $brand-text-shadow;
+}

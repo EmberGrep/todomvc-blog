@@ -1,4 +1,4 @@
-# Building Todo MVC from Scratch Using Ember CLI
+# Ember CLI TodoMVC - Getting Started
 
 ## Creating a new Project
 
