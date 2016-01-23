@@ -1,5 +1,7 @@
 html {
   font-size: 16px;
+  font-family: "Open Sans", sans-serif;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -17,4 +19,8 @@ body {
 
 .app-content {
   flex: 1;
+}
+
+a {
+  color: $brand-orange;
 }
