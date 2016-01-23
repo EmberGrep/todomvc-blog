@@ -7,7 +7,7 @@ export default Ember.Route.extend({
     });
   },
 
-  serialize(post, params) {
+  serialize(post) {
     return {
       'post-slug': post.slug,
     };
