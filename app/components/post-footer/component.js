@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   classNames: ['post-footer'],
-  tagName: 'ul',
+  tagName: 'ol',
 
   posts: Ember.inject.service(),
 });
