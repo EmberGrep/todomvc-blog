@@ -1,3 +1,7 @@
-{{#each model as |post|}}
-  <h2>{{#link-to 'post' post}}{{post.title}}{{/link-to}}</h2>
-{{/each}}
+<ol class="yg-container post-list">
+  {{#each model as |post|}}
+    <li>
+      <h2 class="post-list__title">{{#link-to 'post' post}}{{post.title}}{{/link-to}}</h2>
+    </li>
+  {{/each}}
+</ol>

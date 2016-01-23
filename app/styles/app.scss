@@ -15,3 +15,35 @@ $basic-border: 1px solid lighten($brand-gray, 20%);
 @import "base";
 @import "header";
 @import "footer";
+
+.post-list {
+  padding: 0;
+  counter-reset: li;
+
+  li {
+    list-style: none;
+
+    display: flex;
+    width: 100%;
+
+    margin-bottom: 1rem;
+  }
+
+  li:before {
+    content: counter(li) ".";
+    counter-increment: li;
+
+    margin-right: 1rem;
+
+    font-size: 1.6rem;
+  }
+}
+
+.post-list__title {
+  margin: 0;
+  font-size: 1.6rem;
+
+  a {
+    color: inherit;
+  }
+}
