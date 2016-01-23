@@ -4,6 +4,9 @@ var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
+    emberCliFontAwesome: {
+      useScss: true
+    }
   });
 
   app.import('bower_components/highlightjs/styles/github.css');
