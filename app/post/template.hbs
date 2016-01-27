@@ -1,10 +1,13 @@
 <div class="yg-container no-wrap">
   <div class="post">
-    {{format-markdown model.fullText}}
+    {{#if model}}
+      {{format-markdown model.fullText}}
+    {{else}}
+      <h2>There was an error finding that post, try one from the list below.</h2>
+    {{/if}}
 
     <hr>
 
     {{post-footer}}
   </div>
-
 </div>
