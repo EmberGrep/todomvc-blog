@@ -11,7 +11,7 @@
     "build": "ember build",
     "start": "ember server",
     "test": "ember test",
-    "deploy": "ember build -e production && cp dist/index.html dist/200.html && surge dist todomvc.embergrep.com"
+    "deploy": "ember build -e production && cp dist/index.html dist/200.html && cp dist/index.html dist/404.html && surge dist todomvc.embergrep.com"
   },
   "repository": "",
   "engines": {
