@@ -43,6 +43,6 @@
     "ember-yoga-sass": "1.0.0",
     "markdown-code-highlighting": "0.0.6",
     "surge": "^0.17.7",
-    "yoga-sass": "^1.0.0"
+    "yoga-sass": "^1.0.1"
   }
 }
