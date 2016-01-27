@@ -11,14 +11,9 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{top-nav}}`);
 
-  assert.equal(this.$().text().trim(), '');
+  assert.equal(this.$('.top-nav').hasClass('active'), false);
 
-  // Template block usage:"
-  this.render(hbs`
-    {{#top-nav}}
-      template block text
-    {{/top-nav}}
-  `);
+  this.$('.top-nav__toggle').click();
 
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(this.$('.top-nav').hasClass('active'), true, 'Clicking toggle will set active');
 });
