@@ -21,6 +21,45 @@ So, when the list of completed tasks is empty, `arr-length` will return 0 which 
 
 Here we were able to use our existing handlebars helpers to add this feature without changing any Javascript in our app.
 
+## Hiding the Bottom Bar
+
+If we look at the demo application, the entire status bar and todo list hides when there are no todos in the app.
+So, we can wrap the entire status bar in a similar `if` block.
+But, we'll use the entire model list instead of just the completed items:
+
+```htmlbars
+{{#if (arr-length model)}}
+  <section class="main">
+    <input class="toggle-all" type="checkbox">
+    <label for="toggle-all">Mark all as complete</label>
+    {{outlet}}
+  </section>
+  <!-- This footer should hidden by default and shown when there are todos -->
+  <footer class="footer">
+    <!-- This should be `0 items left` by default -->
+    <span class="todo-count">
+      <strong>{{arr-length (active-only model)}}</strong> items left
+    </span>
+    <!-- Remove this if you don't implement routing -->
+    <ul class="filters">
+      <li>
+        {{#link-to "index" activeClass="selected"}}All{{/link-to}}
+      </li>
+      <li>
+        {{#link-to "active" activeClass="selected"}}Active{{/link-to}}
+      </li>
+      <li>
+        {{#link-to "completed" activeClass="selected"}}Completed{{/link-to}}
+      </li>
+    </ul>
+    <!-- Hidden if no completed items are left ↓ -->
+    {{#if (arr-length (complete-only model))}}
+      <button class="clear-completed" onclick={{action "deleteTodos" (complete-only model)}}>Clear completed</button>
+    {{/if}}
+  </footer>
+{{/if}}
+```
+
 ## Clearing Todos
 
 Now, we need a way to clear multiple todos.
