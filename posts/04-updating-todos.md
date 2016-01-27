@@ -1,5 +1,7 @@
 # Ember CLI TodoMVC - Updating Todos
 
+> [See the finished app in action](todomvc-example.embergrep.com)
+
 Now to match the functionality of TodoMVC, we need our app to allow users to double click on todos, edit the title, and have these changes saved to the server.
 
 ## Creating a Todo Item Component

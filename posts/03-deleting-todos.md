@@ -1,5 +1,7 @@
 # Ember CLI TodoMVC - Deleting and Toggling Todos
 
+> [See the finished app in action](todomvc-example.embergrep.com)
+
 Now that we are able to create and pull in our Todos, we need to allow our users to delete and toggle the `isComplete` status our existing todos.
 
 ## Deleting Todos

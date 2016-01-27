@@ -1,5 +1,7 @@
 # Ember CLI TodoMVC - Getting Started
 
+> [See the finished app in action](todomvc-example.embergrep.com)
+
 ## Creating a new Project
 
 Right now Ember-CLI is in a bit of a teenage stage.

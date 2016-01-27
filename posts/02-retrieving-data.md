@@ -1,5 +1,7 @@
 # Ember CLI TodoMVC Retrieving Data
 
+> [See the finished app in action](todomvc-example.embergrep.com)
+
 In the last post, we were able to create a new todo, but we did nothing to actually list existing todos.
 So in this post we'll review grabbing our existing todos and showing the new todo in our list.
 

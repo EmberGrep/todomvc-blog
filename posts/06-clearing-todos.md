@@ -1,5 +1,7 @@
 # Ember CLI TodoMVC - Clearing Todos
 
+> [See the finished app in action](todomvc-example.embergrep.com)
+
 To wrap up the features of TodoMVC, we will need a way to clear completed todos from the list of todos.
 
 ## Showing Clear Button
