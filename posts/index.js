@@ -20,6 +20,6 @@ module.exports = postFiles.filter((filename) => {
     fullText: post,
     body: getPostBody(post),
     title: getPostTitle(post),
-    slug: filename,
+    slug: filename.replace('.md', ''),
   };
 });
