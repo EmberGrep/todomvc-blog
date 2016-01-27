@@ -54,7 +54,9 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+    ENV.googleAnalytics = {
+      webPropertyId: process.env.GOOGLE_ID,
+    };
   }
 
   return ENV;
