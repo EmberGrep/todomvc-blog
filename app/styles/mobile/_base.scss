@@ -11,6 +11,32 @@
   }
 
   .top-nav__list {
-    display: none;
+    background: $brand-gray;
+
+    display: block;
+    height: inherit;
+
+    position: absolute;
+    top: 100%;
+    left: 0;
+
+    max-height: 0;
+    overflow: auto;
+
+    transition: max-height 1s, padding 1s;
+
+    li {
+      display: block;
+    }
+
+    .top-nav__brand {
+      display: none;
+    }
+  }
+
+  .active .top-nav__list {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    max-height: 7rem;
   }
 }
