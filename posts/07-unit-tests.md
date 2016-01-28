@@ -469,3 +469,203 @@ export default Ember.Helper.helper(activeOnly);
 ```
 
 We were able to refactor our code because we had our regression tests in place to check that everything remained working the same.
+
+## Refactoring Tests
+
+While we've reduced the duplication in our `app` code, our tests still duplicate a ton of logic.
+Let's reduce this burden and make things a bit cleaner.
+
+To start, let's create a test in `tests/unit/utils/arr-filter-test.js`.
+Here we will check that the utility returns a function to start with:
+
+```js
+import arrFilter from '../../../utils/arr-filter';
+import { module, test } from 'qunit';
+
+module('Unit | Utility | arr filter');
+
+test('it returns a composed function', function(assert) {
+  let composed = arrFilter();
+
+  assert.equal(typeof composed, 'function');
+});
+```
+
+Next let's test the default behavior of our composed function by copying our defaults test from `active-only`:
+
+```js
+test('it returns a good default for non-arrays', function(assert) {
+  let composed = arrFilter();
+  let obj = {foo: 'bar'};
+
+  let resultObj = composed([obj]);
+  assert.deepEqual(resultObj, []);
+
+  let n = {foo: 'bar'};
+
+  let resultNull = composed([n]);
+  assert.deepEqual(resultNull, []);
+
+  let u = undefined;
+
+  let resultUndefined = composed([u]);
+  assert.deepEqual(resultUndefined, []);
+
+  let str = `I'm a teapot`;
+
+  let resultStr = composed([str]);
+  assert.deepEqual(resultStr, []);
+});
+```
+
+Now, we can remove the defaults tests from our `active-only-test.js` and `complete-only-test.js` while still having these paths covered in our util test.
+Next, if we look at it, we are testing `Array.prototype.filter` instead of testing our actual filter logic.
+So, let's see if we can improve this.
+
+I think that our `arrFilter` can check that the filter is being called.
+We'll start by creating the most simple filter function possible at the top of our test file:
+
+```js
+const testFilter = item => item;
+```
+
+Then we can pass this filter callback into each `arrFilter`:
+
+```js
+const testFilter = item => item;
+
+test('it returns a composed function', function(assert) {
+  let composed = arrFilter(testFilter);
+
+  assert.equal(typeof composed, 'function');
+});
+
+test('it returns a good default for non-arrays', function(assert) {
+  let composed = arrFilter(testFilter);
+  let obj = {foo: 'bar'};
+
+  let resultObj = composed([obj]);
+  assert.deepEqual(resultObj, []);
+
+  let n = {foo: 'bar'};
+
+  let resultNull = composed([n]);
+  assert.deepEqual(resultNull, []);
+
+  let u = undefined;
+
+  let resultUndefined = composed([u]);
+  assert.deepEqual(resultUndefined, []);
+
+  let str = `I'm a teapot`;
+
+  let resultStr = composed([str]);
+  assert.deepEqual(resultStr, []);
+});
+```
+
+Then we will test that the filter is actually being run:
+
+```js
+test('it returns an array of true items', function(assert) {
+  let composed = arrFilter(testFilter);
+  let items = [true, true];
+
+  let resultObj = composed([items]);
+  assert.deepEqual(resultObj, items);
+});
+
+test('it returns no false items', function(assert) {
+  let composed = arrFilter(testFilter);
+  let items = [false, false];
+
+  let resultObj = composed([items]);
+  assert.deepEqual(resultObj, []);
+});
+
+test('it returns mixed items', function(assert) {
+  let composed = arrFilter(testFilter);
+  let items = [false, true];
+
+  let resultObj = composed([items]);
+  assert.deepEqual(resultObj, [true]);
+});
+```
+
+Ok, so we're testing that the filter is run in our util test, but what about simplifying our helper tests.
+To do this, we will want to export out our filter from `active-only`:
+
+```js
+import Ember from 'ember';
+import arrFilter from '../utils/arr-filter';
+
+export let filter = (todo) => !todo.isComplete;
+
+export let activeOnly = arrFilter(filter);
+
+export default Ember.Helper.helper(activeOnly);
+```
+
+Next, we can update our test to just test `filter` instead of `activeOnly`.
+This is possible since our util test checks that given a valid filter callback, our expected behavior should still work:
+
+```js
+import { filter } from '../../../helpers/active-only';
+import { module, test } from 'qunit';
+
+module('Unit | Helper | active only');
+
+test('it returns true for incomplete todos', function(assert) {
+  let todo = { title: 'Cereal', isComplete: false };
+
+  let result = filter(todo);
+  assert.ok(result);
+});
+
+test('it returns false for complete todos', function(assert) {
+  let todo = { title: 'Cereal', isComplete: true };
+
+  let result = filter(todo);
+  assert.notOk(result);
+});
+```
+
+Now we can just do the same with `complete-only`:
+
+```js
+import Ember from 'ember';
+import arrFilter from '../utils/arr-filter';
+
+export let filter = (todo) => todo.isComplete;
+
+export let completeOnly = arrFilter(filter);
+
+export default Ember.Helper.helper(completeOnly);
+```
+
+And our `test/unit/helpers/complete-only-test.js` looks like this:
+
+```js
+import { filter } from '../../../helpers/complete-only';
+import { module, test } from 'qunit';
+
+module('Unit | Helper | complete only');
+
+test('it returns true for complete todos', function(assert) {
+  let todo = { title: 'Cereal', isComplete: true };
+
+  let result = filter(todo);
+  assert.ok(result);
+});
+
+test('it returns false for incomplete todos', function(assert) {
+  let todo = { title: 'Cereal', isComplete: false };
+
+  let result = filter(todo);
+  assert.notOk(result);
+});
+```
+
+Now we have our templates fully tested, we have abstracted a resuable array filter composition utility, and we've reduced the complexity of our tests so that we are only testing what is unique to each unit.
+
+In the next post, we'll look at writing a test for our `todo-item` component and see how we can test DOM and user behavior in a managable way.
