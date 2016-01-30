@@ -1,6 +1,6 @@
 # Ember CLI TodoMVC - Getting Started
 
-> [See the finished app in action](todomvc-example.embergrep.com)
+> [See the finished app in action](http://todomvc-example.embergrep.com)
 
 ## Creating a new Project
 

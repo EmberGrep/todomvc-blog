@@ -1,6 +1,6 @@
 # Ember Testing TodoMVC - Unit Testing
 
-> [See the finished app in action](todomvc-example.embergrep.com)
+> [See the finished app in action](http://todomvc-example.embergrep.com)
 
 So far in our app, we've created a functioning application.
 But, how do we assure that things are working, and how can we assure that these features will continue working in the future?

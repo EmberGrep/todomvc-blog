@@ -1,6 +1,6 @@
 # Ember CLI TodoMVC - Routing & Filtering Data
 
-> [See the finished app in action](todomvc-example.embergrep.com)
+> [See the finished app in action](http://todomvc-example.embergrep.com)
 
 Now that we have our data populating, deleting, and editing it's time to work on the footer for our TodoMVC app.
 
