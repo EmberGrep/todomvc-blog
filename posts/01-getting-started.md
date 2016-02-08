@@ -9,7 +9,7 @@ While the 1.13.x branch of Ember CLI is crazy stable, I would rather get the ben
 This means, we'll need to install the beta version of CLI:
 
 ```bash
-npm install -g ember-cli@2.3.0-beta.1
+npm install -g ember-cli@beta
 ```
 
 Now once we have this, we can create a new Ember project:
